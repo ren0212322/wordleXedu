@@ -1,0 +1,16 @@
+{
+  "name": "wordle-manjeetsharma0796",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint ."
+
+  },
+  "author": "manjeet",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.45.0"
+  }
+}

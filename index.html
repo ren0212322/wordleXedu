@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Wordle</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script/gameController.js"></script>
+    <script src="./script/game.js"></script>
+    <script src="./script/index.js"></script>
+    <script src="./script/renderer.js"></script>
+    <script src="./script/wordle.js"></script>
+    <script src="./script/gameStorage.js"></script>
+  </head>
+
+  <body>
+    <section id="header">
+      <h1 id="heading">WORDLE</h1>
+    </section>
+    
+    <section id="input-section">
+      <input
+        type="Guess"
+        maxlength="5"
+        placeholder="Guess word here"
+        id="guess-area"
+      />
+      <input type="button" value="Guess" id="guess-button" />
+    </section>
+    
+    <section id="color-meaning">
+      <section class="flex-row">
+        <p class="box green"></p>
+        <p>Correct Letter, Correct Position</p>
+      </section>
+      <section class="flex-row">
+        <p class="box yellow"></p>
+        <p>Correct Letter, Incorrect Position</p>  
+      </section>
+      <section>
+        <p id="previous-score">Previous Score : 30</p>
+        <p id="previous-word">Previous Word: BROOK</p>
+      </section>
+    </section>
+
+    <article id="status">
+      <p>Guesses Made</p>
+
+      <section id="guess-history"></section>
+      <p>Chance Left: <span id="chance-left">6</span></p>
+      <section id="score"></section>
+      <section id="correct-word"></section>
+    </article>
+  </body>
+</html>
