@@ -124,3 +124,50 @@ body {
   align-items: center;
   margin-bottom: 1em;
 }
+
+/* CSS for the buttons */
+.top-right-container {
+  position: absolute;
+  top: 20px; /* Distance from the top of the page */
+  right: 20px; /* Distance from the right side of the page */
+  display: flex;
+  gap: 10px; /* Space between the buttons */
+}
+
+button {
+  background-color: #f0f0f0; /* Light grey background to match the page */
+  border: 1px solid #8a8a8a; /* Slightly darker border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 15px; /* Padding for a comfortable button size */
+  font-family: 'Arial', sans-serif; /* Simple, clean font */
+  font-size: 16px; /* Readable font size */
+  color: #333; /* Dark grey text color */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+  margin-right: 10px; /* Space between buttons */
+}
+
+/* Hover effect for buttons */
+button:hover {
+  background-color: #d9d9d9; /* Slightly darker grey on hover */
+  border-color: #707070; /* Darker border on hover */
+}
+
+/* Focus effect for accessibility */
+button:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add subtle shadow for focus */
+}
+
+/* Additional styling for Withdraw button (optional) */
+button#Withdraw {
+  background-color: #f8d7da; /* Light pink background for contrast */
+  border-color: #d9534f; /* Matching border color */
+  color: #721c24; /* Darker text color for readability */
+}
+
+/* Hover effect for Withdraw button */
+button#Withdraw:hover {
+  background-color: #f5c6cb; /* Slightly darker pink on hover */
+  border-color: #c9302c; /* Darker border on hover */
+}

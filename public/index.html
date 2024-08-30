@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>Wordle</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script/gameController.js"></script>
+    <script src="./script/game.js"></script>
+    <script src="./script/index.js"></script>
+    <script src="./script/renderer.js"></script>
+    <script src="./script/wordle.js"></script>
+    <script src="./script/gameStorage.js"></script>
+  </head>
+
+  <body>
+    <section id="header">
+      <h1 id="heading">WORDLE</h1>
+    </section>
+
+    <section id="input-section">
+      <input
+        type="Guess"
+        maxlength="5"
+        placeholder="Guess word here"
+        id="guess-area"
+      />
+      <input type="button" value="Guess" id="guess-button" />
+    </section>
+
+    <section id="color-meaning">
+      <section class="flex-row">
+        <p class="box green"></p>
+        <p>Correct Letter, Correct Position</p>
+      </section>
+      <section class="flex-row">
+        <p class="box yellow"></p>
+        <p>Correct Letter, Incorrect Position</p>
+      </section>
+      <section>
+        <p id="previous-score">Previous Score : 30</p>
+        <p id="previous-word">Previous Word: BROOK</p>
+      </section>
+    </section>
+
+    <article id="status">
+      <p>Guesses Made</p>
+
+      <section id="guess-history"></section>
+      <p>Chance Left: <span id="chance-left">6</span></p>
+      <section id="score"></section>
+      <section id="correct-word"></section>
+    </article>
+
+    <div class="top-right-container">
+      <button type="button" id="connect-wallet" onclick="connectWallet()">
+        Connect Wallet
+      </button>
+      <button type="button" id="Withdraw" onclick="withdraw()">Withdraw</button>
+    </div>
+  </body>
+  <script>
+    async function connectWallet() {
+      if (typeof window.ethereum !== "undefined") {
+        try {
+          // Request account access if needed
+          const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          const walletAddress = accounts[0];
+          localStorage.setItem("clientAddress", walletAddress);
+          // Show the connected account
+          alert(`Connected: ${walletAddress}`);
+          const displayAddress = `${walletAddress.slice(
+            0,
+            6
+          )}...${walletAddress.slice(-4)}`;
+          // Change button text to show connected status
+          document.getElementById(
+            "connect-wallet"
+          ).textContent = `Connected: ${displayAddress}`;
+
+          // Disable the button to prevent multiple connections
+          document.getElementById("connect-wallet").disabled = true;
+        } catch (error) {
+          console.error(
+            "User denied account access or error occurred: ",
+            error
+          );
+        }
+      } else {
+        alert(
+          "MetaMask is not installed. Please install it to use this feature."
+        );
+      }
+    }
+
+    const withdraw = () => {
+      const {score} = JSON.parse(localStorage.getItem("gameSession"));
+      const clientAddress = localStorage.getItem("clientAddress");
+
+      console.log("INTIATED WITHDRAW", clientAddress, score);
+
+      fetch("/withdraw", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          clientAddress,
+          claimAmt: score,
+        }),
+      });
+    };
+
+    // The Withdraw button's functionality can be implemented here.
+    // document.getElementById("Withdraw").addEventListener("click", function () {
+    //   alert("Withdraw functionality will be implemented here.");
+    //   withdraw()
+    // });
+  </script>
+</html>
